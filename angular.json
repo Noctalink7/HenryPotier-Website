@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SGtest-app": {
+    "HenryPotier-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sgtest-app",
+            "outputPath": "dist/HenryPotier-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "SGtest-app:build:production"
+              "buildTarget": "HenryPotier-app:build:production"
             },
             "development": {
-              "buildTarget": "SGtest-app:build:development"
+              "buildTarget": "HenryPotier-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "SGtest-app:build"
+            "buildTarget": "HenryPotier-app:build"
           }
         },
         "test": {
