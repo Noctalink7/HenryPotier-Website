@@ -15,7 +15,7 @@ export class BooksService {
     return this.http.get<BooksInfo[]>(this.bookUrl);
   }
 
-  getReduc(isbns : string): Observable<any> {
-    return this.http.get<any>(this.bookUrl + "/" + isbns + "/commercialOffers");
+  getReduc(isbns : string): Observable<Reduction> {
+    return this.http.get<Reduction>(this.bookUrl + "/" + isbns + "/commercialOffers");
   }
 }

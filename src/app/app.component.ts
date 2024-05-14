@@ -12,7 +12,7 @@ import { throwError } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'HenryPotier-app';
   books: BooksInfo[] = [];
-  reduction: any[] = [];
+  reduction: offer[] = [];
   cart: Array<BooksInfo> = [];
   totalPrice: number = 0;
   RealPrice: number = 0;
@@ -70,18 +70,18 @@ export class AppComponent implements OnInit {
       }))
     .subscribe((offer) => { 
       this.reduction = offer.offers;
-      this.addReduction(tmpPrice);
+      console.log(this.reduction);
+      this.RealPrice = tmpPrice;
+      this.totalPrice = this.addReduction(tmpPrice, this.reduction);
     });
-//    console.log(this.reduction);
   }
 
-  addReduction(Price: number)
+  addReduction(Price: number, Reducs: offer[]): number
   {
     var reducPrice = Price;
     var tmpPrice = 0;
 
-    this.RealPrice = Price;
-    for (var reduc of this.reduction)
+    for (var reduc of Reducs)
     {
       if (reduc.type == "percentage")
       {
@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
           tmpPrice = reducPrice;
       }
     }
-    this.totalPrice = tmpPrice;
+    return tmpPrice;
   }
 }
 

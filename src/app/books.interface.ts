@@ -15,5 +15,5 @@ export interface offer {
 }
 
 export interface Reduction {
-  offers: offer;
+  offers: offer[];
 }
