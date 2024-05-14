@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksInfo, offer, Reduction } from './books.interface';
 import { BooksService } from './books.service';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,12 @@ export class AppComponent implements OnInit {
   constructor(private booksService: BooksService) {}
 
   ngOnInit(): void {
-    this.booksService.getBooks().subscribe((books) => { 
+    this.booksService.getBooks().pipe(
+      catchError((error) => {
+        console.error('An error occurred:', error);
+        return throwError(() => new Error('Something bad happened; please try again later.'));
+      }))
+    .subscribe((books) => { 
         this.books = books;
     });
   }
@@ -56,7 +63,12 @@ export class AppComponent implements OnInit {
       tmpPrice += item.price;
     }
    // this.totalPrice = tmpPrice; } //tmp
-    this.booksService.getReduc(isbns).subscribe((offer) => { 
+    this.booksService.getReduc(isbns).pipe(
+      catchError((error) => {
+        console.error('An error occurred:', error);
+        return throwError(() => new Error('Something bad happened; please try again later.'));
+      }))
+    .subscribe((offer) => { 
       this.reduction = offer.offers;
       this.addReduction(tmpPrice);
     });
